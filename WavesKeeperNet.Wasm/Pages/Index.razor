@@ -1,0 +1,91 @@
+﻿@page "/"
+@using Microsoft.JSInterop
+@using System.Text.Json
+
+
+@inject IJSRuntime JS
+
+Enter your name: <input @bind="name" />
+
+<div>
+    <button @onclick="Initilize">Initilize</button>
+</div>
+<div>
+    <button @onclick="Auth">Auth</button>
+</div>
+<div>
+    <button @onclick="PublicState">PublicState</button>
+</div>
+<div>
+    <button @onclick="ResourceIsApproved">Resource is approved</button>
+</div>
+<div>
+    <button @onclick="ResourceIsBlocked">Resource is blocked</button>
+</div>
+
+
+Title: <input @bind="title" />
+Message: <input @bind="message" />
+<div>
+    <button @onclick="Notification">Notification</button>
+</div>
+
+@code {
+
+    private string name;
+    private string title;
+    private string message;
+    private WavesKeeper WavesKeeper;
+
+    protected override void OnInitialized()
+    { 
+        base.OnInitialized();          
+        WavesKeeper = new WavesKeeper(JS);    
+    }
+
+
+    async Task Auth()
+    {        
+        AuthData authData1 = new()
+        { 
+            Data= "Generated string from server",
+            Name= "My test App",            
+            Referrer= "https://localhost:7298/",
+            SuccessPath= "https://localhost:7298/"
+        };
+        var r = await WavesKeeper.Auth(authData1);
+        name = JsonSerializer.Serialize(r);
+    }
+
+    async Task PublicState()
+    {        
+        var r = await WavesKeeper.PublicState();
+        name = JsonSerializer.Serialize(r);
+    }
+
+    async Task Initilize()
+    {
+        await WavesKeeper.InitialPromise();       
+    }   
+
+    async Task Notification()
+    {
+        await WavesKeeper.Notification(title, message);           
+    }
+
+    async Task ResourceIsApproved()
+    {           
+        var result = await WavesKeeper.ResourceIsApproved();  
+        name = result.ToString();
+    }
+
+    async Task ResourceIsBlocked()
+    {
+        var result = await WavesKeeper.ResourceIsBlocked();  
+        name = result.ToString();
+    }
+
+
+    
+
+}

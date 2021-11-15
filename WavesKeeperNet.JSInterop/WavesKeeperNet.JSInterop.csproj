@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/RVShershnev/WavesKeeperNet.JSInterop</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/RVShershnev/WavesKeeperNet.JSInterop</RepositoryUrl>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0-rc.1.21452.15" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+ </ItemGroup>
+
+</Project>

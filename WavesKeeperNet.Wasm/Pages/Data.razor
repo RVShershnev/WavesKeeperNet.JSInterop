@@ -1,0 +1,76 @@
+﻿@page "/data"
+
+@using Microsoft.JSInterop
+@using WavesKeeperNet.JSInterop
+@inject IJSRuntime JS
+
+<div>
+    Version: <input @bind="dataVerify.Version" />
+</div>
+<div>
+    Binary: <input @bind="dataVerify.Binary" />  
+</div>
+<div>
+    Public Key: <input @bind="dataVerify.PublicKey" />
+</div>
+<div>
+    Signature: <input @bind="dataVerify.Signature" />  
+</div>
+<div>    
+    <button @onclick="VerifyCustomData">Verify Custom Data</button>    
+</div>
+<div>
+    Verify: <input @bind="IsVerify" />
+</div>
+<div>
+    Version: <input @bind="dataSign.Version" />
+</div>
+<div>
+    Binary: <input @bind="dataSign.Binary" />  
+</div>
+<div>
+    Public Key: <input @bind="t.PublicKey" />
+</div>
+<div>
+    Signature: <input @bind="t.Signature" />
+</div>
+<div>
+    <button @onclick="SignCustomData">Sign Custom Data</button>   
+</div>
+@code {
+
+    private string name;
+    private WavesKeeper WavesKeeper;
+    private string IsVerify { get; set; }
+    private CustomData dataVerify = new()
+    {
+            Version = 1,
+            Binary = "base64:AADDEE==",
+            PublicKey = "3BvAsKuGZe2LbSwKr9SA7eSXcNDKnRqN1j2K2bZaTn5X",
+            Signature = "2bLJYR68pwWrUUoatGbySz2vfY76VtzR8TScg1tt5f9DVDsFDCdecWrUiR4x6gFBnwF4Y51uszpouAwtSrg7EcGg"
+    };
+
+    private CustomData dataSign = new()
+    {
+            Version = 1,
+            Binary = "base64:AADDEE==",
+            PublicKey = "",
+            Signature = ""
+    };
+    CustomData t = new CustomData();
+    protected override void OnInitialized()
+    { 
+        base.OnInitialized();          
+        WavesKeeper= new WavesKeeper(JS);    
+    }        
+
+    private async Task SignCustomData()
+    {                 
+        t = await WavesKeeper.SignCustomData(dataSign);  
+    }
+
+    private async Task VerifyCustomData()
+    {     
+        IsVerify = (await WavesKeeper.VerifyCustomData(dataVerify)).ToString();        
+    }
+}

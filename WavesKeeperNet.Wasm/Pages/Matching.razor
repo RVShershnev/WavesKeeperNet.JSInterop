@@ -1,0 +1,15 @@
+﻿@page "/matching"
+@using Microsoft.JSInterop
+@using WavesKeeperNet.JSInterop
+@inject IJSRuntime JS
+
+@code {
+
+    WavesKeeper WavesKeeper { get; set; }
+
+    protected override void OnInitialized()
+    { 
+        base.OnInitialized();          
+        WavesKeeper= new WavesKeeper(JS);    
+    }
+}

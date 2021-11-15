@@ -1,0 +1,49 @@
+﻿@page "/transactions"
+
+@using Microsoft.JSInterop
+@using WavesKeeperNet.JSInterop
+@inject IJSRuntime JS
+
+@code {
+    string name;
+    private WavesKeeper WavesKeeper;
+
+    Transaction tx = new()
+    {
+        type = 4,
+        data = new WData()
+        {
+            amount = new Amount()
+            {
+                assetId = "WAVES",
+                tokens = "0.001"
+            },
+            fee = new Fee()
+            {
+                assetId = "WAVES",
+                tokens = "0.001"
+            },
+            recipient = "3N4mLCaHq2twRKnbUjdvAHyXjoccQE9KDRE"
+        }
+    };
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        WavesKeeper = new WavesKeeper(JS);
+    }
+
+    async Task SignTransaction()
+    {           
+        var result = await WavesKeeper.SignTransaction(tx);  
+        name = result.ToString();
+    }
+
+    async Task SignAndPublishTransaction()
+    {           
+        var result = await WavesKeeper.SignAndPublishTransaction(tx);  
+        name = result.ToString();
+    }
+
+   
+}

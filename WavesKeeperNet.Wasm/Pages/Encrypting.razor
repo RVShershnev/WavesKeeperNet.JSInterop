@@ -1,0 +1,67 @@
+﻿@page "/encrypting"
+
+@using Microsoft.JSInterop
+@using WavesKeeperNet.JSInterop
+@inject IJSRuntime JS
+<div>
+@exception
+</div>
+<div>
+    message: <input @bind="message"></input>  
+</div>
+<div>
+    public key: <input @bind="publicKey"></input>  
+</div>
+<div>
+    my app: <input @bind="myApp"></input>  
+</div>
+<div>
+    result: <input @bind="result"t></input>  
+</div>
+
+<div>
+    <button @onclick="EncryptMessage">EncryptMessage</button>  
+</div>
+<div>
+    <button @onclick="DecryptMessage">DecryptMessage</button>  
+</div>
+
+@code {
+
+    private WavesKeeper WavesKeeper;    
+
+    private string message= "My message";
+    private string publicKey = "416z9d8DQDy5MPTqDhvReRBaPb19gEyVRWvHcewpP6Nc";
+    private string myApp= "my app";
+    private string result= "";
+    private string exception= "";
+    
+    protected override void OnInitialized()
+    { 
+        base.OnInitialized();          
+        WavesKeeper= new WavesKeeper(JS);    
+    }
+
+    async Task EncryptMessage()
+    {
+        try
+        {
+            result = await WavesKeeper.EncryptMessage(message, publicKey, myApp);
+        }
+        catch(Exception ex)
+        {
+            exception = ex.Message;
+        }
+    }
+
+    async Task DecryptMessage()
+    {   try
+        {
+        result = await WavesKeeper.DecryptMessage(message, publicKey, myApp);  
+         }
+        catch(Exception ex)
+        {
+            exception = ex.Message;
+        }
+    }
+}

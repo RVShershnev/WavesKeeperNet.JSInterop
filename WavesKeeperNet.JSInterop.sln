@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WavesKeeperNet.JSInterop", "WavesKeeperNet.JSInterop\WavesKeeperNet.JSInterop.csproj", "{08FD1690-4850-4278-B7F1-4D16AD3F597F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WavesKeeperNet.Wasm", "WavesKeeperNet.Wasm\WavesKeeperNet.Wasm.csproj", "{F8983D8E-2AD2-42CC-B232-44EBD13E517A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C0AA0891-AE23-422E-885E-9E9124B2D75F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08FD1690-4850-4278-B7F1-4D16AD3F597F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08FD1690-4850-4278-B7F1-4D16AD3F597F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08FD1690-4850-4278-B7F1-4D16AD3F597F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08FD1690-4850-4278-B7F1-4D16AD3F597F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8983D8E-2AD2-42CC-B232-44EBD13E517A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8983D8E-2AD2-42CC-B232-44EBD13E517A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8983D8E-2AD2-42CC-B232-44EBD13E517A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8983D8E-2AD2-42CC-B232-44EBD13E517A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {63FA2EFF-BCEF-42A8-9B26-8738740DFAD4}
+	EndGlobalSection
+EndGlobal
