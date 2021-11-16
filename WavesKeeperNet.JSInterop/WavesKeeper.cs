@@ -9,7 +9,7 @@ namespace WavesKeeperNet.JSInterop
         public WavesKeeperEventArgs(string text) { Text = text; }
         public string Text { get; }
     }
-    public class WavesKeeper : IAsyncDisposable
+    public class WavesKeeper : IWavesKeeper, IAsyncDisposable
     {
         private readonly Lazy<Task<IJSObjectReference>> moduleTask;
 
@@ -21,7 +21,8 @@ namespace WavesKeeperNet.JSInterop
         {
             moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
                "import", "./_content/WavesKeeperNet.JSInterop/WavesKeeperJSInterop.js").AsTask());
-           // On();
+            // On();
+            // InitialPromise();
         }
         public async ValueTask DisposeAsync()
         {
@@ -35,7 +36,7 @@ namespace WavesKeeperNet.JSInterop
         public async void On()
         {
             var module = await moduleTask.Value;
-            module.InvokeVoidAsync("on");
+            await module.InvokeVoidAsync("on");
         }
 
         [JSInvokable]

@@ -3,7 +3,6 @@
 @using System.Text.Json
 
 
-@inject IJSRuntime JS
 
 Enter your name: <input @bind="name" />
 
@@ -35,15 +34,8 @@ Message: <input @bind="message" />
     private string name;
     private string title;
     private string message;
-    private WavesKeeper WavesKeeper;
-
-    protected override void OnInitialized()
-    { 
-        base.OnInitialized();          
-        WavesKeeper = new WavesKeeper(JS);    
-    }
-
-
+    
+  
     async Task Auth()
     {        
         AuthData authData1 = new()
@@ -53,35 +45,35 @@ Message: <input @bind="message" />
             Referrer= "https://localhost:7298/",
             SuccessPath= "https://localhost:7298/"
         };
-        var r = await WavesKeeper.Auth(authData1);
+        var r = await _wavesKeeper.Auth(authData1);
         name = JsonSerializer.Serialize(r);
     }
 
     async Task PublicState()
     {        
-        var r = await WavesKeeper.PublicState();
+        var r = await _wavesKeeper.PublicState();
         name = JsonSerializer.Serialize(r);
     }
 
     async Task Initilize()
     {
-        await WavesKeeper.InitialPromise();       
+        await _wavesKeeper.InitialPromise();       
     }   
 
     async Task Notification()
     {
-        await WavesKeeper.Notification(title, message);           
+        await _wavesKeeper.Notification(title, message);           
     }
 
     async Task ResourceIsApproved()
     {           
-        var result = await WavesKeeper.ResourceIsApproved();  
+        var result = await _wavesKeeper.ResourceIsApproved();  
         name = result.ToString();
     }
 
     async Task ResourceIsBlocked()
     {
-        var result = await WavesKeeper.ResourceIsBlocked();  
+        var result = await _wavesKeeper.ResourceIsBlocked();  
         name = result.ToString();
     }
 

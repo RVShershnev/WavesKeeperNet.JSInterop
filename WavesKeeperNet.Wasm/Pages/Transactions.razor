@@ -5,8 +5,8 @@
 @inject IJSRuntime JS
 
 @code {
-    string name;
-    private WavesKeeper WavesKeeper;
+
+    string name;  
 
     Transaction tx = new()
     {
@@ -30,18 +30,17 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        WavesKeeper = new WavesKeeper(JS);
     }
 
     async Task SignTransaction()
     {           
-        var result = await WavesKeeper.SignTransaction(tx);  
+        var result = await _wavesKeeper.SignTransaction(tx);  
         name = result.ToString();
     }
 
     async Task SignAndPublishTransaction()
     {           
-        var result = await WavesKeeper.SignAndPublishTransaction(tx);  
+        var result = await _wavesKeeper.SignAndPublishTransaction(tx);  
         name = result.ToString();
     }
 

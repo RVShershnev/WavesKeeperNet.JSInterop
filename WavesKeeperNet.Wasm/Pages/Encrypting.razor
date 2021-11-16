@@ -28,7 +28,7 @@
 
 @code {
 
-    private WavesKeeper WavesKeeper;    
+        
 
     private string message= "My message";
     private string publicKey = "416z9d8DQDy5MPTqDhvReRBaPb19gEyVRWvHcewpP6Nc";
@@ -38,15 +38,14 @@
     
     protected override void OnInitialized()
     { 
-        base.OnInitialized();          
-        WavesKeeper= new WavesKeeper(JS);    
+        base.OnInitialized();                  
     }
 
     async Task EncryptMessage()
     {
         try
         {
-            result = await WavesKeeper.EncryptMessage(message, publicKey, myApp);
+            result = await _wavesKeeper.EncryptMessage(message, publicKey, myApp);
         }
         catch(Exception ex)
         {
@@ -57,7 +56,7 @@
     async Task DecryptMessage()
     {   try
         {
-        result = await WavesKeeper.DecryptMessage(message, publicKey, myApp);  
+        result = await _wavesKeeper.DecryptMessage(message, publicKey, myApp);  
          }
         catch(Exception ex)
         {

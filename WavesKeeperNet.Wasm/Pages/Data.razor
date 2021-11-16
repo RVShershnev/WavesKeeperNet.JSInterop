@@ -40,7 +40,6 @@
 @code {
 
     private string name;
-    private WavesKeeper WavesKeeper;
     private string IsVerify { get; set; }
     private CustomData dataVerify = new()
     {
@@ -58,19 +57,15 @@
             Signature = ""
     };
     CustomData t = new CustomData();
-    protected override void OnInitialized()
-    { 
-        base.OnInitialized();          
-        WavesKeeper= new WavesKeeper(JS);    
-    }        
+  
 
     private async Task SignCustomData()
     {                 
-        t = await WavesKeeper.SignCustomData(dataSign);  
+        t = await _wavesKeeper.SignCustomData(dataSign);  
     }
 
     private async Task VerifyCustomData()
     {     
-        IsVerify = (await WavesKeeper.VerifyCustomData(dataVerify)).ToString();        
+        IsVerify = (await _wavesKeeper.VerifyCustomData(dataVerify)).ToString();        
     }
 }

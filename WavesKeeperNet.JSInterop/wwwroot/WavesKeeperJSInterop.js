@@ -4,7 +4,7 @@ export async function initialPromise() {
         WavesKeeper.initialPromise
             .then((keeperApi) => {              
                 keeperApi.publicState().then(state => startApp(state));
-            })
+            })     
     }
     catch (err) {
         return err;
