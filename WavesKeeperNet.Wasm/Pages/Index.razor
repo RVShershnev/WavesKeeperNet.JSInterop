@@ -41,9 +41,9 @@ Message: <input @bind="message" />
         AuthData authData1 = new()
         { 
             Data= "Generated string from server",
-            Name= "My test App",            
-            Referrer= "https://localhost:7298/",
-            SuccessPath= "https://localhost:7298/"
+            Name= "Waves interop",            
+            Referrer = "https://localhost:7298/",
+            SuccessPath = "https://localhost:7298/"
         };
         var r = await _wavesKeeper.Auth(authData1);
         name = JsonSerializer.Serialize(r);

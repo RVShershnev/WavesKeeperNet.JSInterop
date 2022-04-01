@@ -4,11 +4,6 @@ using System.Text.Json;
 
 namespace WavesKeeperNet.JSInterop
 {
-    public class WavesKeeperEventArgs
-    {
-        public WavesKeeperEventArgs(string text) { Text = text; }
-        public string Text { get; }
-    }
     public class WavesKeeper : IWavesKeeper, IAsyncDisposable
     {
         private readonly Lazy<Task<IJSObjectReference>> moduleTask;
@@ -164,21 +159,22 @@ namespace WavesKeeperNet.JSInterop
         /// If the the signature is valid, be sure that the given blockchain account belongs to that user.
         /// </summary>
         /// <returns></returns>
-        public async Task<string> Auth(AuthData data)         
+        public async Task<AuthDataResponce> Auth(AuthData data)         
         {
             try
-            {
+            {// 2EDKCrb2K1RJLXdiCdpmSxGp9yAwpNvrLhzLxdDdD16XggxFSv5W9G1UG86Satr2Rd6vpX1txBFWnYZRr4RnP7KX
+             // 4GNJiER6HidQqnzD2JzZtSLeRerLoxCC8YUDUmEeBYUoQgAzkbx5sFfAvZ2ZtKE9Sqa76sPEBnmAcVeRcG4py8Wi
                 var module = await moduleTask.Value;
                 dynamic d = new ExpandoObject();             
                 dynamic json =  await module.InvokeAsync<object>("auth", data);
                 dynamic config = System.Text.Json.JsonSerializer.Deserialize<ExpandoObject>(json);
                 var ee = JsonSerializer.Serialize(config);
                 var Responce = JsonSerializer.Deserialize<AuthDataResponce>(ee);             
-                return Responce.ToString();
+                return Responce;
             }
             catch
             {
-                throw;
+                throw new Exception("Auth is falled");
             }
         }
 

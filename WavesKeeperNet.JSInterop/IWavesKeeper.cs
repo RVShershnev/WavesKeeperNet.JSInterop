@@ -6,7 +6,7 @@
         ValueTask<Root> PublicState();
         ValueTask<string> EncryptMessage(string message, string publicKey, string appName);
         ValueTask<string> DecryptMessage(string message, string publicKey, string appName);
-        Task<string> Auth(AuthData data);
+        Task<AuthDataResponce> Auth(AuthData data);
         Task<string> SignTransaction(Transaction tx);
         Task<string> SignAndPublishTransaction(Transaction tx);
         ValueTask<bool> ResourceIsApproved();
