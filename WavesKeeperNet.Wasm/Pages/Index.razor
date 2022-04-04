@@ -38,18 +38,14 @@ Message: <input @bind="message" />
 
     async Task Auth()
     {        
-        AuthData authData1 = new()
+        AuthData authData = new()
         { 
             Data= "Generated string from server",
             Name= "Waves interop",            
             Referrer = "https://localhost:7298/",
             SuccessPath = "https://localhost:7298/"
         };
-
-        var ddd = DotNetObjectReference.Create<string>("");
-        
-
-        var r = await _wavesKeeper.Auth(authData1);
+        var r = await _wavesKeeper.Auth(authData);
         name = JsonSerializer.Serialize(r);
     }
 
@@ -80,8 +76,4 @@ Message: <input @bind="message" />
         var result = await _wavesKeeper.ResourceIsBlocked();  
         name = result.ToString();
     }
-
-
-    
-
 }
