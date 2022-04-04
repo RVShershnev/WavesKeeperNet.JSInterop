@@ -75,7 +75,7 @@ namespace WavesKeeperNet.JSInterop
         /// <param name="title">String, 20 chars max (required field).</param>
         /// <param name="message">String, 250 chars max (optional field).</param>
         /// <returns>Returns Promise.</returns>
-        public async Task Notification(string title, string message) 
+        public async Task Notification(string title, string? message) 
         {
             try
             {

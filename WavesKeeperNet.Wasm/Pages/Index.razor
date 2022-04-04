@@ -34,8 +34,8 @@ Message: <input @bind="message" />
     private string name;
     private string title;
     private string message;
-    
-  
+
+
     async Task Auth()
     {        
         AuthData authData1 = new()
@@ -45,6 +45,10 @@ Message: <input @bind="message" />
             Referrer = "https://localhost:7298/",
             SuccessPath = "https://localhost:7298/"
         };
+
+        var ddd = DotNetObjectReference.Create<string>("");
+        
+
         var r = await _wavesKeeper.Auth(authData1);
         name = JsonSerializer.Serialize(r);
     }

@@ -12,4 +12,9 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 builder.Services.AddSingleton<IWavesKeeper, WavesKeeper>();
 
-await builder.Build().RunAsync();
+var app = builder.Build();
+
+var jsruntime = app.Services.GetService<IJSRuntime>();
+
+await app.RunAsync();
+

@@ -8,21 +8,28 @@ namespace WavesKeeperNet.JSInterop
 {
     public class AuthData
     {
+        /// <summary>
+        /// a string line with any data (required field)
+        /// </summary>
         public string Data { get; set; }
-        public string Name { get; set; }
-        public string Icon { get; set; }
-        public string Referrer { get; set; }
-        public string SuccessPath { get; set; }
-    }
 
-    public class AuthDataResponce
-    {
-        public string host { get; set; }
-        public string name { get; set; }
-        public string prefix { get; set; }
-        public string address { get; set; }
-        public string publicKey { get; set; }
-        public string signature { get; set; }
-        public int version { get; set; }
+        /// <summary>
+        /// name of the service (optional field)
+        /// </summary>
+        public string? Name { get; set; }
+
+        /// <summary>
+        /// path to the logo relative to the referreror origin of the website (optional field)
+        /// </summary>
+        public string? Icon { get; set; }
+        /// <summary>
+        /// a websites' full URL for redirect (optional field)
+        /// </summary>
+        public string? Referrer { get; set; }
+
+        /// <summary>
+        /// relative path to the website's Auth API (optional field)
+        /// </summary>
+        public string? SuccessPath { get; set; }
     }
 }
